@@ -1,0 +1,110 @@
+.buttons1{
+    font-size: 24px;
+    padding: 25px 50px;
+    width: 75%;
+    text-align: center;
+    border-radius: 4px;
+    float:none;
+}
+
+.buttons1:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.margines{
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.container-course{
+    margin-right: 20%;
+    margin-left: 20%;
+    margin-top: 20%;
+    margin-bottom: 20%;
+    border: 2px solid #333;
+}
+
+
+.carousel-example-content {
+    position: absolute;
+    font-size: 50px;
+    line-height: 50px;
+    width: 100%;
+    text-align: center;
+    top: 50%;
+    margin-top: -50px;
+}
+
+
+.carousel-item {
+    display: block;
+    color: #444;
+    background: #f4f4f4;
+    box-shadow: 0px 0px 3px rgba(0,0,0,0.5);
+    -webkit-transition: opacity 0.3s;
+    -moz-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+    opacity: 1;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+.carousel {
+    padding: 20px;
+    overflow: visible;
+}
+
+.carousel-inner {
+    position: relative;
+    overflow: visible;
+}
+
+.carousel>.item, .carousel-item {
+    top: 0;
+    left: 0;
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+}
+
+.carousel-item {
+    -webkit-transition: -webkit-transform 500ms;
+    -moz-transition: -moz-transform 500ms;
+    transition: transform 500ms;
+}
+
+[drag-to-dismiss]{
+    transform: translate(0,0); /* NOTE: this is required to prevent mobile webkit issues */
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: opacity 300ms, -webkit-transform 300ms;
+    -moz-transition: opacity 300ms, -moz-transform 300ms;
+    transition: opacity 300ms, transform 300ms;
+    opacity: 1;
+}
+
+.dismiss {
+    -webkit-transition: opacity 300ms, -webkit-transform 300ms;
+    -moz-transition: opacity 300ms, -moz-transform 300ms;
+    transition: opacity 300ms, transform 300ms;
+    opacity: 0.5;
+}
+
+.dismitted {
+    -webkit-transition: opacity 300ms, -webkit-transform 300ms;
+    -moz-transition: opacity 300ms, -moz-transform 300ms;
+    transition: opacity 300ms, transform 300ms;
+    opacity: 0;
+}

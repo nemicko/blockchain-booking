@@ -6,15 +6,25 @@ angular.module('tbbc.main', ['ngRoute', 'ui.router'])
             .state('menu', {
                 url: '/menu',
                 templateUrl: 'app/menu/menu.html',
-                controller: 'MainCtrl'
+                controller: 'MainCtrl',
+                resolve: {
+                    topics: function($http){
+                        return $http.get('course.json').then(function(response){
+                            return response.data.topics;
+                        });
+                    }
+                }
             });
 
     }])
 
-    .controller('MainCtrl', ['$routeParams', '$rootScope', '$window', '$scope', '$state',
-        function ($routeParams, $rootScope, $window, $scope, $state) {
 
-            console.log("test");
+.controller('MainCtrl', ['$scope', 'topics', function($scope, topics) {
 
-        }
-    ]);
+    $scope.test = "Michael";
+    $scope.test = function(index){}
+
+    $scope.topics = topics;
+    console.log($scope.topics);
+
+}]);

@@ -1,21 +1,13 @@
 
-
-    <ui-switch  ng-model="invoice.paid"></ui-switch>
-
+<div class="container">
 
 
-    <div class="row">
-
-        <div class="col-md-6">
-            <form>
-                <div class="form-group">
-                    <lable class="label">Firstname</lable>
-                    <input class="form-control">
-                </div>
-            </form>
+    <div class="row" ng-repeat="topic in topics" ng-click="test($index)" ui-sref="book({id: topic.id})">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+        <button type="button" class="buttons1">{{topic.name}}</button>
         </div>
-        <div class="col-md-6">
-
+        <div class="col-xs-12 col-sm-12 col-md-12 margines">
         </div>
-
     </div>
+
+</div>

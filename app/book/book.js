@@ -20,9 +20,15 @@ angular.module('tbbc.book', ['ngRoute', 'ui.router'])
     }])
 
 
-    .controller('BookCtrl', ['$scope', '$http', '$stateParams', function($scope, $http, $stateParams) {
+    .controller('BookCtrl', ['$scope', '$http', '$stateParams', '$state', function($scope, $http, $stateParams, $state) {
 
         $scope.topics = null;
+
+        $scope.openCourse= function (course) {
+            console.log("nesto", course);
+            $state.go('modal', {id:course.id});
+
+        }
 
         $http.get('course.json').then(function(response){
             response.data.topics.forEach(function(topic){
@@ -33,6 +39,9 @@ angular.module('tbbc.book', ['ngRoute', 'ui.router'])
             });
         });
 
+        $scope.updateActive = function (active) {
+            console.log(active);
+        }
 
 
         /*

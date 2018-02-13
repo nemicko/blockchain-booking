@@ -4,13 +4,15 @@ angular.module('tbbc', [
     "ui.router",
     "tbbc.main",
     "tbbc.book",
-    "mobile-angular-ui.gestures"
+    "mobile-angular-ui.gestures",
+    "tbbc.login",
+    "tbbc.modal"
 ]).
 config(['$locationProvider', '$routeProvider','$urlRouterProvider', function($locationProvider, $routeProvider, $urlRouterProvider) {
     $locationProvider.hashPrefix('!');
 
     $urlRouterProvider
-        .otherwise('/menu');
+        .otherwise('/login');
 
     // $routeProvider.otherwise({redirectTo: '/menu'});
 }])
@@ -38,6 +40,7 @@ config(['$locationProvider', '$routeProvider','$urlRouterProvider', function($lo
                 this.activeItem = this.activeItem || 0;
                 this.activeItem = this.activeItem === 0 ? this.itemCount - 1 : this.activeItem - 1;
             };
+
         }
     };
 })
@@ -138,4 +141,4 @@ config(['$locationProvider', '$routeProvider','$urlRouterProvider', function($lo
             );
         }
     };
-}]);
+}])

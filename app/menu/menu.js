@@ -21,7 +21,6 @@ angular.module('tbbc.main', ['ngRoute', 'ui.router'])
 
 .controller('MainCtrl', ['$scope', 'topics', function($scope, topics) {
 
-    $scope.test = "Michael";
     $scope.test = function(index){}
 
     $scope.topics = topics;

@@ -10,7 +10,7 @@
               "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes",
               "time_from": "12:00",
               "time_to": "14:00",
-              "picture": "nema slike"
+              "picture": "http://via.placeholder.com/140x100"
             },
             {
               "id": 2,
@@ -18,27 +18,27 @@
               "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes",
               "time_from": "12:00",
               "time_to": "14:00",
-              "picture": "https://unsplash.com/photos/WHWYBmtn3_0"
+              "picture": "http://via.placeholder.com/140x100"
             }]
     }, {
       "id": 2,
       "name": "Topic 2",
       "courses" : [
         {
-          "id": 1,
+          "id": 3,
           "name": "Andrijana",
           "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes",
           "time_from": "13:00",
           "time_to": "14:00",
-          "picture": "nema slike"
+          "picture": "http://via.placeholder.com/140x100"
         },
         {
-          "id": 1,
+          "id": 4,
           "name": "Natalija",
           "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes",
           "time_from": "12:00",
           "time_to": "15:00",
-          "picture": "nema slike"
+          "picture": "http://via.placeholder.com/140x100"
         }
       ]
     }]

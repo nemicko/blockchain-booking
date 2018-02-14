@@ -6,7 +6,8 @@ angular.module('tbbc', [
     "tbbc.book",
     "mobile-angular-ui.gestures",
     "tbbc.login",
-    "tbbc.modal"
+    "tbbc.modal",
+    "tbbc.bookings"
 ]).
 config(['$locationProvider', '$routeProvider','$urlRouterProvider', function($locationProvider, $routeProvider, $urlRouterProvider) {
     $locationProvider.hashPrefix('!');
@@ -17,6 +18,18 @@ config(['$locationProvider', '$routeProvider','$urlRouterProvider', function($lo
     // $routeProvider.otherwise({redirectTo: '/menu'});
 }])
 
+
+.run(['$rootScope', '$http', '$stateParams', '$state',
+        function($rootScope, $http, $stateParams, $state) {
+        $rootScope.bookings= function () {
+            $state.go('bookings');
+        };
+        $rootScope.menu= function () {
+                $state.go('menu');
+            }
+
+
+}])
 .directive('carousel', function() {
     return {
         restrict: 'C',

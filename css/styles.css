@@ -33,6 +33,10 @@
     background-color: #f4f4f4;
 }
 
+.navbar {
+    margin-bottom:0!important;
+    position:fixed !important;
+}
 
 .carousel-example-content {
     position: absolute;

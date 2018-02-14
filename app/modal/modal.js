@@ -33,13 +33,26 @@ angular.module('tbbc.modal', ['ngRoute', 'ui.router'])
 
         $scope.showLoader=false;
 
-        $scope.loader = function() {
+        $scope.loader = function(course_id) {
+            var book = {
+                previous:"",
+                visitor: $scope.user2.code,
+                course: course_id,
+                hash:""
+            };
+            var books = JSON.parse(localStorage.getItem("bookings"));
+            if(!books)
+                books = [];
+            books.push(book);
+
+            localStorage.setItem("bookings",JSON.stringify(books));
+            console.log("bookings",books);
+
             $scope.showLoader=true;
             $timeout(function () {
                 $scope.showLoader = false;
                 $state.go('menu');
-            }, 5000)
-
+            }, 5000);
         };
 
 

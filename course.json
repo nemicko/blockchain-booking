@@ -6,7 +6,7 @@
       "courses": [
             {
               "id": 1,
-              "name": "Luka",
+              "name": "Test",
               "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes",
               "time_from": "12:00",
               "time_to": "14:00",

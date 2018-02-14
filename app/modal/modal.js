@@ -13,7 +13,9 @@ angular.module('tbbc.modal', ['ngRoute', 'ui.router'])
     }])
 
 
-    .controller('ModalCtrl', ['$scope', '$http', '$stateParams', '$state', function($scope, $http, $stateParams, $state) {
+    .controller('ModalCtrl', ['$scope', '$http', '$stateParams', '$state', '$timeout',
+        function($scope, $http, $stateParams, $state, $timeout) {
+
 
         var id = $stateParams.id;
         console.log("ID", id);
@@ -29,7 +31,14 @@ angular.module('tbbc.modal', ['ngRoute', 'ui.router'])
             id: $stateParams.course_id
         };
 
+        $scope.showLoader=false;
+
         $scope.loader = function() {
+            $scope.showLoader=true;
+            $timeout(function () {
+                $scope.showLoader = false;
+                $state.go('menu');
+            }, 5000)
 
         };
 

@@ -2,7 +2,7 @@
   "topics": [
     {
       "id": 1,
-      "name": "Button 1",
+      "name": "Topic 1",
       "courses": [
             {
               "id": 1,
@@ -15,14 +15,31 @@
             {
               "id": 2,
               "name": "Erika",
-              "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,",
+              "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes",
               "time_from": "12:00",
               "time_to": "14:00",
-              "picture": "nema slike"
+              "picture": "https://unsplash.com/photos/WHWYBmtn3_0"
             }]
     }, {
       "id": 2,
-      "name": "Button 1",
-      "courses" : []
+      "name": "Topic 2",
+      "courses" : [
+        {
+          "id": 1,
+          "name": "Andrijana",
+          "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes",
+          "time_from": "13:00",
+          "time_to": "14:00",
+          "picture": "nema slike"
+        },
+        {
+          "id": 1,
+          "name": "Natalija",
+          "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes",
+          "time_from": "12:00",
+          "time_to": "15:00",
+          "picture": "nema slike"
+        }
+      ]
     }]
 }

@@ -4,7 +4,7 @@ angular.module('tbbc.modal', ['ngRoute', 'ui.router'])
 
         $stateProvider
             .state('modal', {
-                url: '/modal/:id?',
+                url: '/modal/:course_name/:course_id',
                 templateUrl: 'app/modal/modal.html',
                 controller: 'ModalCtrl',
 
@@ -18,16 +18,16 @@ angular.module('tbbc.modal', ['ngRoute', 'ui.router'])
         var id = $stateParams.id;
         console.log("ID", id);
 
+        $scope.user1=localStorage.getItem("user");
+
+        $scope.user2=JSON.parse($scope.user1);
+
         $scope.topics = null;
 
-        $http.get('course.json').then(function(response){
-            response.data.topics.forEach(function(topic){
-                if (topic.id == $stateParams.id){
-                    $scope.topic = topic;
-                    console.log($scope.topic.courses);
-                }
-            });
-        })
+        $scope.course = {
+            name: $stateParams.course_name,
+            id: $stateParams.course_id
+        };
 
         $scope.loader = function() {
 

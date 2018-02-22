@@ -1,4 +1,4 @@
-
+<!--
 <div class="container margines">
 
 
@@ -7,6 +7,20 @@
         <button type="button" class="buttons1">{{topic.name}}</button>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 margines">
+        </div>
+    </div>
+
+</div>
+-->
+
+
+<div class="scrollable" ui-shared-state="searchBar">
+
+    <div class="scrollable-content" ui-scroll-bottom="bottomReached()" style="padding-top:50px;">
+        <div class="list-group">
+            <a ng-repeat="topic in topics" ui-sref="book({id: topic.id})" ng-click="test($index)" href="" class="list-group-item">
+                {{topic.name}} - ({{topic.courses.length}}) <i class="fa fa-chevron-right pull-right"></i>
+            </a>
         </div>
     </div>
 

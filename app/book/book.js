@@ -20,9 +20,12 @@ angular.module('tbbc.book', ['ngRoute', 'ui.router'])
     }])
 
 
-    .controller('BookCtrl', ['$scope', '$http', '$stateParams', '$state', function($scope, $http, $stateParams, $state) {
+    .controller('BookCtrl', ['$scope', '$http', '$stateParams', '$state', '$rootScope', 'SharedState',
+        function($scope, $http, $stateParams, $state, $rootScope, SharedState) {
+
 
         $scope.topics = null;
+        $rootScope.menuVisible = true;
 
         $scope.openCourse= function (course) {
             console.log("nesto", course);

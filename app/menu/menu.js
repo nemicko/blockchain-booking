@@ -19,9 +19,11 @@ angular.module('tbbc.main', ['ngRoute', 'ui.router'])
     }])
 
 
-.controller('MainCtrl', ['$scope', 'topics', function($scope, topics) {
+.controller('MainCtrl', ['$scope', 'topics', '$rootScope',
+    function($scope, topics, $rootScope) {
 
-    $scope.test = function(index){}
+    $rootScope.menuVisible = false;
+
 
     $scope.topics = topics;
     console.log($scope.topics);

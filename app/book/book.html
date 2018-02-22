@@ -1,41 +1,38 @@
+<div class="carousel">
 
- <div class="carousel">
+    <div class="carousel-inner">
 
-        <div class="carousel-inner" >
+        <div class="carousel-item" ng-repeat="course in topic.courses track by $index">
 
-            <div class="carousel-item" ng-repeat="course in topic.courses track by $index">
-
-                 <div class="container" >
-                     <div class="row">
-                         <div class="col-xs-12 col-sm-12 col-md-12" style="text-align: center;">
-                             <h1>{{ course.name }}</h1>
-                         </div>
-                     </div>
-                     <div class="row">
-                         <div class="col-xs-7 col-sm-7 col-md-7">
-                             {{ course.description }}
-                         </div>
-                         <div class="col-xs-5 col-sm-5 col-md-5">
-                            <img ng-src="{{course.picture}}">
-                         </div>
-                     </div>
-                     <div class="col-xs-12 col-sm-12 col-md-12 margines">
-                     </div>
-                     <div class="row">
-                         <div class="col-xs-8 col-sm-8 col-md-8 margines">
-                             {{course.time_from}}-{{course.time_to}}
-                         </div>
-                         <div class="col-xs-4 col-sm-4 col-md-4 margines">
-                             <button ng-click="openCourse(course)">BOOKBOOKBOOK</button>
-                         </div>
-                     </div>
-                 </div>
-
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12" style="text-align: center;">
+                        <h1>{{ course.name }}</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-7 col-sm-7 col-md-7">
+                        <h4>{{ course.speaker }}</h4>
+                        {{ course.description }}
+                    </div>
+                    <div class="col-xs-5 col-sm-5 col-md-5">
+                        <img ng-src="{{course.picture}}">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 margines">
+                </div>
+                <div class="row">
+                    <div class="col-xs-8 col-sm-8 col-md-8 margines">
+                        {{course.time_from}}-{{course.time_to}}
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 margines">
+                        <button class="btn" ng-click="openCourse(course)">BOOK</button>
+                    </div>
+                </div>
             </div>
 
         </div>
 
     </div>
 
-
-
+</div>

@@ -2,11 +2,12 @@
   "topics": [
     {
       "id": 1,
-      "name": "Topic 1",
+      "name": "Test Topic",
       "courses": [
             {
               "id": 1,
-              "name": "Test",
+              "name": "Time travel for beginners",
+              "speaker": "Michael",
               "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes",
               "time_from": "12:00",
               "time_to": "14:00",
@@ -14,7 +15,8 @@
             },
             {
               "id": 2,
-              "name": "Erika",
+              "name": "This is my course",
+              "speaker": "Erika",
               "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes",
               "time_from": "12:00",
               "time_to": "14:00",
@@ -22,11 +24,12 @@
             }]
     }, {
       "id": 2,
-      "name": "Topic 2",
+      "name": "Another very interesting topic",
       "courses" : [
         {
           "id": 3,
-          "name": "Andrijana",
+          "name": "This is my course",
+          "speaker": "Erika",
           "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes",
           "time_from": "13:00",
           "time_to": "14:00",
@@ -34,7 +37,31 @@
         },
         {
           "id": 4,
-          "name": "Natalija",
+          "name": "Another good topic",
+          "speaker": "Natalija",
+          "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes",
+          "time_from": "12:00",
+          "time_to": "15:00",
+          "picture": "http://via.placeholder.com/140x100"
+        }
+      ]
+    }, {
+      "id": 3,
+      "name": "Time Travel",
+      "courses" : [
+        {
+          "id": 3,
+          "name": "Time travel for beginners",
+          "speaker": "Michael",
+          "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes",
+          "time_from": "13:00",
+          "time_to": "14:00",
+          "picture": "http://via.placeholder.com/140x100"
+        },
+        {
+          "id": 4,
+          "name": "Flux capacitor - 5min DIY",
+          "speaker": "Michael",
           "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes",
           "time_from": "12:00",
           "time_to": "15:00",

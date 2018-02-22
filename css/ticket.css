@@ -1,0 +1,100 @@
+.cardWrap {
+    width: 320px;
+    margin: 3em auto;
+    color: #fff;
+}
+
+.card {
+    background: linear-gradient(to bottom, #e84c3d 0%, #e84c3d 26%, #ecedef 26%, #ecedef 100%);
+    height: 11em;
+    float: left;
+    position: relative;
+    padding: 1em;
+}
+
+.cardLeft {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    width: 16em;
+}
+
+.cardRight {
+    width: 6.5em;
+    border-left: .18em dashed #777777;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+.cardRight:before, .cardRight:after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: .9em;
+    height: .9em;
+    background: #777777;
+    border-radius: 50%;
+    left: -.5em;
+}
+.cardRight:before {
+    top: -.4em;
+}
+.cardRight:after {
+    bottom: -.4em;
+}
+
+h1 {
+    font-size: 1.1em;
+    margin-top: 0;
+}
+h1 span {
+    font-weight: normal;
+}
+
+.title, .name, .seat, .time {
+    text-transform: uppercase;
+    font-weight: normal;
+}
+.title h2, .name h2, .seat h2, .time h2 {
+    font-size: .9em;
+    color: #525252;
+    margin: 0;
+}
+.title span, .name span, .seat span, .time span {
+    font-size: .7em;
+    color: #a2aeae;
+}
+
+.title {
+    margin: 2em 0 0 0;
+}
+
+.name, .seat {
+    margin: .7em 0 0 0;
+}
+
+.time {
+    margin: .7em 0 0 1em;
+}
+
+.seat, .time {
+    float: left;
+}
+
+.number {
+    text-align: center;
+    text-transform: uppercase;
+}
+.number h3 {
+    color: #e84c3d;
+    margin: .9em 0 0 0;
+    font-size: 2.5em;
+}
+.number span {
+    display: block;
+    color: #a2aeae;
+}
+
+.barcode {
+    height: 2em;
+    margin-top:30px;
+    width: 0;
+}

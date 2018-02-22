@@ -1,26 +1,31 @@
-<div class="container-course">
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <p>Name:   {{user2.name}}</p>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <p>Course:{{course.name}}</p>
-        </div>
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 margines">
-            <div ng-if="showLoader" class="spinner">
-                <div class="bounce1"></div>
-                <div class="bounce2"></div>
-                <div class="bounce3"></div>
+<div class="scrollable">
+    <div class="scrollable-content section" style="padding-top:50px;">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <p>Name: {{user2.name}}</p>
             </div>
-        </div>
-    </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <p>Course:{{course.name}}</p>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 margines">
+                    <div ng-if="showLoader" class="spinner">
+                        <div class="bounce1"></div>
+                        <div class="bounce2"></div>
+                        <div class="bounce3"></div>
+                        <div class="bounce4"></div>
+                        <div class="bounce5"></div>
+                    </div>
+                </div>
+            </div>
 
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 margines">
-            <button type="button" class="btn btn-primary" ng-click="loader(course.id)" style="float:right;">BOOK</button>
-        </div>
-    </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 margines">
+                    <button type="button" class="btn btn-primary" ng-click="loader(course.id)" style="float:right;">BOOK
+                    </button>
+                </div>
+            </div>
 
+        </div>
     </div>
 </div>

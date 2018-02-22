@@ -34,11 +34,10 @@ angular.module('tbbc.modal', ['ngRoute', 'ui.router'])
         $scope.showLoader=false;
 
         $scope.loader = function(course_id) {
-            var book = {
-                previous:"",
-                visitor: $scope.user2.code,
-                course: course_id,
-                hash:""
+            var transaction = {
+                from:"",
+                to: $scope.user2.code,
+                course: course_id
             };
             var books = JSON.parse(localStorage.getItem("bookings"));
             if(!books)
@@ -48,12 +47,24 @@ angular.module('tbbc.modal', ['ngRoute', 'ui.router'])
             localStorage.setItem("bookings",JSON.stringify(books));
             console.log("bookings",books);
 
+            window.addBlock = function(){
+                var block = {
+                    previous: window.chain.last().index,
+                    data: ["My block"],
+                    client: "clientA",
+                    timestamp: new Date(),
+                    index: window.chain.last().index + 1
+                };
+                socket.emit("add", block);
+            }
+
             $scope.showLoader=true;
             $timeout(function () {
                 $scope.showLoader = false;
                 $state.go('menu');
             }, 5000);
         };
+
 
 
     }]);

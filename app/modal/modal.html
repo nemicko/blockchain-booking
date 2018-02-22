@@ -1,30 +1,45 @@
 <div class="scrollable">
     <div class="scrollable-content section" style="padding-top:50px;">
+        <div class="container-course">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <p>Name: {{user2.name}}</p>
+                <hr>
+                <p>Course:{{course.name}}</p>
+                <p>{{course.time_from}} - {{course.time_to}}</p>
+                <hr>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <p>Course:{{course.name}}</p>
+                <p>Name: {{user.name}}</p>
+                <hr>
             </div>
+
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 margines">
                     <div ng-if="showLoader" class="spinner">
                         <div class="bounce1"></div>
                         <div class="bounce2"></div>
                         <div class="bounce3"></div>
-                        <div class="bounce4"></div>
-                        <div class="bounce5"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12" style="text-align: center;">
+                    <div ng-if="showText">
+                        <p ng-class="{'green': state>=1}" >Searching Nodes</p>
+                        <p ng-class="{'green': state>=2}">Submitting transaction</p>
+                        <p ng-class="{'green': state==3}">Transaction Accepted</p>
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 margines">
-                    <button type="button" class="btn btn-primary" ng-click="loader(course.id)" style="float:right;">BOOK
+                    <button type="button" class="btn btn-primary btn-block" ng-click="loader(course.id)" style="float:right;">BOOK
                     </button>
                 </div>
             </div>
+        </div>
 
         </div>
     </div>

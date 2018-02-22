@@ -1,3 +1,22 @@
+hr{
+    border-top: 2px dashed #007aff !important;
+    margin-top: 15px !important;
+}
+
+.green{
+    color:#50ef34;
+    font-size:20px;
+}
+
+h4{
+    font-size:20px !important;
+    font-weight: bold !important;
+}
+.pretty-text{
+    font-size: 25px;
+
+}
+
 .buttons1{
     font-size: 24px;
     padding: 25px 50px;
@@ -22,15 +41,10 @@
 
 .container-course{
     font-size: 20px;
-    margin-right: 10%;
-    margin-left: 10%;
-    margin-top: 10%;
-    margin-bottom: 10%;
     padding-top: 5%;
     padding-left: 5%;
-    padding-right: 10%;
-    border: 2px solid #333;
-    background-color: #f4f4f4;
+    padding-right: 5%;
+    background-color: #fff;
 }
 
 .navbar {
@@ -145,7 +159,7 @@
 /*spinner*/
 
 .spinner {
-    margin: 100px auto 0;
+    margin: 15px auto 0;
     width: 70px;
     text-align: center;
 }

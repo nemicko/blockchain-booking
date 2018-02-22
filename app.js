@@ -8,160 +8,170 @@ angular.module('tbbc', [
     "tbbc.login",
     "tbbc.modal",
     "tbbc.bookings"
-]).config(['$locationProvider', '$routeProvider', '$urlRouterProvider', function ($locationProvider, $routeProvider, $urlRouterProvider) {
+]).
+config(['$locationProvider', '$routeProvider','$urlRouterProvider', function($locationProvider, $routeProvider, $urlRouterProvider) {
     $locationProvider.hashPrefix('!');
 
-    $urlRouterProvider
-        .otherwise('/login');
+
+    if(localStorage.getItem("user")===null) {
+        $urlRouterProvider
+            .otherwise('/login');
+    }
+    else{
+        $urlRouterProvider
+            .otherwise('/menu');
+    }
 
     // $routeProvider.otherwise({redirectTo: '/menu'});
 }])
 
 
-    .run(['$rootScope', '$http', '$stateParams', '$state',
-        function ($rootScope, $http, $stateParams, $state) {
+.run(['$rootScope', '$http', '$stateParams', '$state','$location',
+        function($rootScope, $http, $stateParams, $state, $location) {
 
+    if(localStorage.getItem("user")===null) {
+        $location.path('/login');
+    }
 
-
-            $rootScope.bookings = function () {
-                $state.go('bookings');
-            };
-
-            $rootScope.menu = function () {
-                $state.go('menu');
-            };
-
-            socket.emit("register", {data: true});
-            console.log("connected");
-
-        }])
-    .directive('carousel', function () {
-        return {
-            restrict: 'C',
-            scope: {},
-            controller: function () {
-                this.itemCount = 0;
-                this.activeItem = null;
-
-                this.addItem = function () {
-                    var newId = this.itemCount++;
-                    this.activeItem = this.itemCount === 1 ? newId : this.activeItem;
-                    return newId;
-                };
-
-                this.next = function () {
-                    this.activeItem = this.activeItem || 0;
-                    this.activeItem = this.activeItem === this.itemCount - 1 ? 0 : this.activeItem + 1;
-                };
-
-                this.prev = function () {
-                    this.activeItem = this.activeItem || 0;
-                    this.activeItem = this.activeItem === 0 ? this.itemCount - 1 : this.activeItem - 1;
-                };
-
-            }
+    $rootScope.bookings= function () {
+            $state.go('bookings');
         };
-    })
 
-    .directive('carouselItem', function ($drag) {
-        return {
-            restrict: 'C',
-            require: '^carousel',
-            scope: {},
-            transclude: true,
-            template: '<div class="item"><div ng-transclude></div></div>',
-            link: function (scope, elem, attrs, carousel) {
-                scope.carousel = carousel;
-                var id = carousel.addItem();
+        $rootScope.menu= function () {
+            $state.go('menu');
+        };
 
-                var zIndex = function () {
-                    var res = 0;
-                    if (id === carousel.activeItem) {
-                        res = 2000;
-                    } else if (carousel.activeItem < id) {
-                        res = 2000 - (id - carousel.activeItem);
+        // socket.emit("register", { data: true });
+        console.log("connected");
+
+}])
+.directive('carousel', function() {
+    return {
+        restrict: 'C',
+        scope: {},
+        controller: function() {
+            this.itemCount = 0;
+            this.activeItem = null;
+
+            this.addItem = function() {
+                var newId = this.itemCount++;
+                this.activeItem = this.itemCount === 1 ? newId : this.activeItem;
+                return newId;
+            };
+
+            this.next = function() {
+                this.activeItem = this.activeItem || 0;
+                this.activeItem = this.activeItem === this.itemCount - 1 ? 0 : this.activeItem + 1;
+            };
+
+            this.prev = function() {
+                this.activeItem = this.activeItem || 0;
+                this.activeItem = this.activeItem === 0 ? this.itemCount - 1 : this.activeItem - 1;
+            };
+
+        }
+    };
+})
+
+.directive('carouselItem', function($drag) {
+    return {
+        restrict: 'C',
+        require: '^carousel',
+        scope: {},
+        transclude: true,
+        template: '<div class="item"><div ng-transclude></div></div>',
+        link: function(scope, elem, attrs, carousel) {
+            scope.carousel = carousel;
+            var id = carousel.addItem();
+
+            var zIndex = function() {
+                var res = 0;
+                if (id === carousel.activeItem) {
+                    res = 2000;
+                } else if (carousel.activeItem < id) {
+                    res = 2000 - (id - carousel.activeItem);
+                } else {
+                    res = 2000 - (carousel.itemCount - 1 - carousel.activeItem + id);
+                }
+                return res;
+            };
+
+            scope.$watch(function() {
+                return carousel.activeItem;
+            }, function() {
+                elem[0].style.zIndex = zIndex();
+            });
+
+            $drag.bind(elem, {
+                //
+                // This is an example of custom transform function
+                //
+                transform: function(element, transform, touch) {
+                    //
+                    // use translate both as basis for the new transform:
+                    //
+                    var t = $drag.TRANSLATE_BOTH(element, transform, touch);
+
+                    //
+                    // Add rotation:
+                    //
+                    var Dx = touch.distanceX;
+                    var t0 = touch.startTransform;
+                    var sign = Dx < 0 ? -1 : 1;
+                    var angle = sign * Math.min((Math.abs(Dx) / 700) * 30, 30);
+
+                    t.rotateZ = angle + (Math.round(t0.rotateZ));
+
+                    return t;
+                },
+                move: function(drag) {
+                    if (Math.abs(drag.distanceX) >= drag.rect.width / 4) {
+                        elem.addClass('dismiss');
                     } else {
-                        res = 2000 - (carousel.itemCount - 1 - carousel.activeItem + id);
+                        elem.removeClass('dismiss');
                     }
-                    return res;
-                };
+                },
+                cancel: function() {
+                    elem.removeClass('dismiss');
+                },
+                end: function(drag) {
+                    elem.removeClass('dismiss');
+                    if (Math.abs(drag.distanceX) >= drag.rect.width / 4) {
+                        scope.$apply(function() {
+                            carousel.next();
+                        });
+                    }
+                    drag.reset();
+                }
+            });
+        }
+    };
+})
 
-                scope.$watch(function () {
-                    return carousel.activeItem;
-                }, function () {
-                    elem[0].style.zIndex = zIndex();
-                });
-
-                $drag.bind(elem, {
+.directive('dragMe', ['$drag', function($drag) {
+    return {
+        controller: function($scope, $element) {
+            $drag.bind($element,
+                {
                     //
-                    // This is an example of custom transform function
+                    // Here you can see how to limit movement
+                    // to an element
                     //
-                    transform: function (element, transform, touch) {
-                        //
-                        // use translate both as basis for the new transform:
-                        //
-                        var t = $drag.TRANSLATE_BOTH(element, transform, touch);
-
-                        //
-                        // Add rotation:
-                        //
-                        var Dx = touch.distanceX;
-                        var t0 = touch.startTransform;
-                        var sign = Dx < 0 ? -1 : 1;
-                        var angle = sign * Math.min((Math.abs(Dx) / 700) * 30, 30);
-
-                        t.rotateZ = angle + (Math.round(t0.rotateZ));
-
-                        return t;
-                    },
-                    move: function (drag) {
-                        if (Math.abs(drag.distanceX) >= drag.rect.width / 4) {
-                            elem.addClass('dismiss');
-                        } else {
-                            elem.removeClass('dismiss');
-                        }
-                    },
-                    cancel: function () {
-                        elem.removeClass('dismiss');
-                    },
-                    end: function (drag) {
-                        elem.removeClass('dismiss');
-                        if (Math.abs(drag.distanceX) >= drag.rect.width / 4) {
-                            scope.$apply(function () {
-                                carousel.next();
-                            });
-                        }
+                    transform: $drag.TRANSLATE_INSIDE($element.parent()),
+                    end: function(drag) {
+                        // go back to initial position
                         drag.reset();
                     }
-                });
-            }
-        };
-    })
+                },
+                { // release touch when movement is outside bounduaries
+                    sensitiveArea: $element.parent()
+                }
+            );
+        }
+    };
+}])
 
-    .directive('dragMe', ['$drag', function ($drag) {
-        return {
-            controller: function ($scope, $element) {
-                $drag.bind($element,
-                    {
-                        //
-                        // Here you can see how to limit movement
-                        // to an element
-                        //
-                        transform: $drag.TRANSLATE_INSIDE($element.parent()),
-                        end: function (drag) {
-                            // go back to initial position
-                            drag.reset();
-                        }
-                    },
-                    { // release touch when movement is outside bounduaries
-                        sensitiveArea: $element.parent()
-                    }
-                );
-            }
-        };
-    }])
-
-    .directive('qrcode', ['$window', function ($window) {
+    .directive('qrcode', ['$window', function($window) {
 
         var canvas2D = !!$window.CanvasRenderingContext2D,
             levels = {
@@ -170,7 +180,7 @@ angular.module('tbbc', [
                 'Q': 'Quartile',
                 'H': 'High'
             },
-            draw = function (context, qr, modules, tile, color) {
+            draw = function(context, qr, modules, tile, color) {
                 for (var row = 0; row < modules; row++) {
                     for (var col = 0; col < modules; col++) {
                         var w = (Math.ceil((col + 1) * tile) - Math.floor(col * tile)),
@@ -186,7 +196,7 @@ angular.module('tbbc', [
         return {
             restrict: 'E',
             template: '<canvas class="qrcode"></canvas>',
-            link: function (scope, element, attrs) {
+            link: function(scope, element, attrs) {
                 var domElement = element[0],
                     $canvas = element.find('canvas'),
                     canvas = $canvas[0],
@@ -208,19 +218,19 @@ angular.module('tbbc', [
                         foreground: '#000',
                         background: '#fff'
                     },
-                    setColor = function (value) {
+                    setColor = function(value) {
                         color.foreground = value || color.foreground;
                     },
-                    setBackground = function (value) {
+                    setBackground = function(value) {
                         color.background = value || color.background;
                     },
-                    setVersion = function (value) {
+                    setVersion = function(value) {
                         version = Math.max(1, Math.min(parseInt(value, 10), 40)) || 5;
                     },
-                    setErrorCorrectionLevel = function (value) {
+                    setErrorCorrectionLevel = function(value) {
                         errorCorrectionLevel = value in levels ? value : 'M';
                     },
-                    setData = function (value) {
+                    setData = function(value) {
                         if (!value) {
                             return;
                         }
@@ -246,12 +256,12 @@ angular.module('tbbc', [
                         error = false;
                         modules = qr.getModuleCount();
                     },
-                    setSize = function (value) {
+                    setSize = function(value) {
                         size = parseInt(value, 10) || modules * 2;
                         tile = size / modules;
                         canvas.width = canvas.height = size;
                     },
-                    render = function () {
+                    render = function() {
                         if (!qr) {
                             return;
                         }
@@ -311,7 +321,7 @@ angular.module('tbbc', [
                 setErrorCorrectionLevel(attrs.errorCorrectionLevel);
                 setSize(attrs.size);
 
-                attrs.$observe('version', function (value) {
+                attrs.$observe('version', function(value) {
                     if (!value) {
                         return;
                     }
@@ -322,7 +332,7 @@ angular.module('tbbc', [
                     render();
                 });
 
-                attrs.$observe('errorCorrectionLevel', function (value) {
+                attrs.$observe('errorCorrectionLevel', function(value) {
                     if (!value) {
                         return;
                     }
@@ -333,7 +343,7 @@ angular.module('tbbc', [
                     render();
                 });
 
-                attrs.$observe('data', function (value) {
+                attrs.$observe('data', function(value) {
                     if (!value) {
                         return;
                     }
@@ -343,7 +353,7 @@ angular.module('tbbc', [
                     render();
                 });
 
-                attrs.$observe('size', function (value) {
+                attrs.$observe('size', function(value) {
                     if (!value) {
                         return;
                     }
@@ -352,7 +362,7 @@ angular.module('tbbc', [
                     render();
                 });
 
-                attrs.$observe('color', function (value) {
+                attrs.$observe('color', function(value) {
                     if (!value) {
                         return;
                     }
@@ -361,7 +371,7 @@ angular.module('tbbc', [
                     render();
                 });
 
-                attrs.$observe('background', function (value) {
+                attrs.$observe('background', function(value) {
                     if (!value) {
                         return;
                     }
@@ -370,7 +380,7 @@ angular.module('tbbc', [
                     render();
                 });
 
-                attrs.$observe('href', function (value) {
+                attrs.$observe('href', function(value) {
                     if (!value) {
                         return;
                     }
@@ -379,5 +389,4 @@ angular.module('tbbc', [
                     render();
                 });
             }
-        };
-    }])
+        };}])

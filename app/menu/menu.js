@@ -22,7 +22,7 @@ angular.module('tbbc.main', ['ngRoute', 'ui.router'])
 .controller('MainCtrl', ['$scope', 'topics', '$rootScope',
     function($scope, topics, $rootScope) {
 
-    $rootScope.menuVisible = false;
+    $rootScope.menuVisible = true;
 
 
     $scope.topics = topics;

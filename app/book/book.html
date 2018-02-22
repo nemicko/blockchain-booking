@@ -6,17 +6,16 @@
 
             <div class="container">
                 <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12" style="text-align: center;">
+                    <div class="col-xs-12 col-sm-12 col-md-12 pretty-text" style="text-align: center; padding-top: 10px; background-color: #007aff;">
                         <h1>{{ course.name }}</h1>
+
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-7 col-sm-7 col-md-7">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <img ng-src="{{course.picture}}" style="float:right; margin-left: 5px; margin-top:10px;">
                         <h4>{{ course.speaker }}</h4>
-                        {{ course.description }}
-                    </div>
-                    <div class="col-xs-5 col-sm-5 col-md-5">
-                        <img ng-src="{{course.picture}}">
+                        <p>{{ course.description }}</p>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 margines">

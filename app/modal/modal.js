@@ -4,7 +4,7 @@ angular.module('tbbc.modal', ['ngRoute', 'ui.router'])
 
         $stateProvider
             .state('modal', {
-                url: '/modal/:course_name/:course_id',
+                url: '/modal/:course_name/:course_id/:course_time_from/:course_time_to',
                 templateUrl: 'app/modal/modal.html',
                 controller: 'ModalCtrl',
 
@@ -13,36 +13,40 @@ angular.module('tbbc.modal', ['ngRoute', 'ui.router'])
     }])
 
 
-    .controller('ModalCtrl', ['$scope', '$http', '$stateParams', '$state', '$timeout',
-        function($scope, $http, $stateParams, $state, $timeout) {
+    .controller('ModalCtrl', ['$scope', '$http', '$stateParams', '$state', '$timeout', '$interval',
+        function($scope, $http, $stateParams, $state, $timeout, $interval) {
 
 
         var id = $stateParams.id;
         console.log("ID", id);
 
-        $scope.user1=localStorage.getItem("user");
+        $scope.user=localStorage.getItem("user");
 
-        $scope.user2=JSON.parse($scope.user1);
+        $scope.user=JSON.parse($scope.user);
 
         $scope.topics = null;
 
         $scope.course = {
             name: $stateParams.course_name,
-            id: $stateParams.course_id
+            id: $stateParams.course_id,
+            time_from: $stateParams.course_time_from,
+            time_to: $stateParams.course_time_to
         };
 
         $scope.showLoader=false;
+        $scope.showText=false;
+
 
         $scope.loader = function(course_id) {
             var transaction = {
                 from:"",
-                to: $scope.user2.code,
+                to: $scope.user.code,
                 course: course_id
             };
             var books = JSON.parse(localStorage.getItem("bookings"));
             if(!books)
                 books = [];
-            books.push(book);
+            books.push(transaction);
 
             localStorage.setItem("bookings",JSON.stringify(books));
             console.log("bookings",books);
@@ -59,11 +63,26 @@ angular.module('tbbc.modal', ['ngRoute', 'ui.router'])
             }
 
             $scope.showLoader=true;
+            $scope.showText=true;
             $timeout(function () {
-                $scope.showLoader = false;
                 $state.go('menu');
-            }, 5000);
+            }, 10000);
+
+            $scope.state=0;
+
+            $interval(function() {
+
+                    $scope.state++;
+                    console.log($scope.state);
+
+            }, 3000,3);
+
+
+
+
+
         };
+
 
 
 

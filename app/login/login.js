@@ -13,8 +13,8 @@ angular.module('tbbc.login', ['ngRoute', 'ui.router'])
     }])
 
 
-    .controller('LoginCtrl', ['$scope', '$http', '$stateParams', '$state', function($scope, $http, $stateParams, $state) {
-
+    .controller('LoginCtrl', ['$scope', '$http', '$stateParams', '$state','$rootScope', function($scope, $http, $stateParams, $state, $rootScope) {
+        $rootScope.menuVisible = false;
         $scope.login=function(){
 
             localStorage.setItem("user",JSON.stringify($scope.user));
@@ -26,7 +26,6 @@ angular.module('tbbc.login', ['ngRoute', 'ui.router'])
                 }
             })
         }
-
         $scope.createWallet = function(user){
             return new Promise(function (resolve, reject){
                 if(user){

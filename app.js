@@ -12,15 +12,26 @@ angular.module('tbbc', [
 config(['$locationProvider', '$routeProvider','$urlRouterProvider', function($locationProvider, $routeProvider, $urlRouterProvider) {
     $locationProvider.hashPrefix('!');
 
-    $urlRouterProvider
-        .otherwise('/login');
+
+    if(localStorage.getItem("user")===null) {
+        $urlRouterProvider
+            .otherwise('/login');
+    }
+    else{
+        $urlRouterProvider
+            .otherwise('/menu');
+    }
 
     // $routeProvider.otherwise({redirectTo: '/menu'});
 }])
 
 
-.run(['$rootScope', '$http', '$stateParams', '$state',
-        function($rootScope, $http, $stateParams, $state) {
+.run(['$rootScope', '$http', '$stateParams', '$state','$location',
+        function($rootScope, $http, $stateParams, $state, $location) {
+
+    if(localStorage.getItem("user")===null) {
+        $location.path('/login');
+    }
 
     $rootScope.bookings= function () {
             $state.go('bookings');
@@ -30,10 +41,13 @@ config(['$locationProvider', '$routeProvider','$urlRouterProvider', function($lo
             $state.go('menu');
         };
 
-        socket.emit("register", { data: true });
+        // socket.emit("register", { data: true });
         console.log("connected");
 
+
+
 }])
+
 .directive('carousel', function() {
     return {
         restrict: 'C',

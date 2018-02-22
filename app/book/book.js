@@ -29,7 +29,7 @@ angular.module('tbbc.book', ['ngRoute', 'ui.router'])
 
         $scope.openCourse= function (course) {
             console.log("nesto", course);
-            $state.go('modal', {course_name: course.name, course_id:course.id});
+            $state.go('modal', {course_name: course.name, course_id:course.id, course_time_from:course.time_from, course_time_to:course.time_to });
 
         }
 

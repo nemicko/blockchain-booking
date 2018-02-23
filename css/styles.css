@@ -2,10 +2,41 @@ hr{
     border-top: 2px dashed #007aff !important;
     margin-top: 15px !important;
 }
-
+.img-border{
+    border:1px solid #007aff;
+}
 .green{
     color:#50ef34;
     font-size:20px;
+}
+
+.green.red{
+    color:red !important;
+    font-size:20px;
+}
+
+.btn-blue{
+    background-color: #007aff;
+    color:#fff;
+}
+
+a.list-group-item{
+    color: #007aff !important;
+    font-size: 18px;
+}
+a.list-group-item:hover{
+    color: #fff;
+}
+
+.app-body{
+    background-color: #fff;
+}
+.list-group-item{
+    background-color: #fff;
+    border-bottom: 1px solid #007aff !important;
+}
+.list-group-item:hover{
+    background-color: #007aff;
 }
 
 h4{
@@ -167,7 +198,7 @@ h4{
 .spinner > div {
     width: 18px;
     height: 18px;
-    background-color: #333;
+    background-color: #007aff;
 
     border-radius: 100%;
     display: inline-block;

@@ -28,14 +28,14 @@
                     <div ng-if="showText">
                         <p ng-class="{'green': state>=1}" >Searching Nodes</p>
                         <p ng-class="{'green': state>=2}">Submitting transaction</p>
-                        <p ng-class="{'green': state>=3}">Transaction Accepted</p>
+                        <p ng-class="{'green': (state>=3), 'red': flag==1}">Transaction Accepted</p>
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 margines">
-                    <button type="button" class="btn btn-primary btn-block" ng-click="loader(course.id)" style="float:right;">BOOK
+                    <button type="button" class="btn btn-blue btn-block" ng-click="loader(course.id)" style="float:right;">BOOK
                     </button>
                 </div>
             </div>

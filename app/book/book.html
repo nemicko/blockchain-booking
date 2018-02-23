@@ -6,16 +6,15 @@
 
             <div class="container">
                 <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 pretty-text" style="text-align: center; padding-top: 10px; background-color: #007aff;">
+                    <div class="col-xs-12 col-sm-12 col-md-12 pretty-text" style="text-align: center; padding-top: 10px; color:#fff; background-color: #007aff;">
                         <h1>{{ course.name }}</h1>
 
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
-                        <img ng-src="{{course.picture}}" style="float:right; margin-left: 5px; margin-top:10px;">
-                        <h4>{{ course.speaker }}</h4>
-                        <p>{{ course.description }}</p>
+                        <img ng-src="{{course.picture}}" style="float:right; margin-left: 5px; margin-top:10px;" class="img-border">
+                        <p style="padding-top: 5px; white-space: normal; word-break: break-all;">{{ course.description }}</p>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 margines">
@@ -23,9 +22,11 @@
                 <div class="row">
                     <div class="col-xs-8 col-sm-8 col-md-8 margines">
                         {{course.time_from}}-{{course.time_to}}
+                        <br>
+                        speaker: {{course.speaker}}
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4 margines">
-                        <button class="btn" ng-click="openCourse(course)">BOOK</button>
+                        <button class="btn btn-blue" ng-click="openCourse(course)">BOOK</button>
                     </div>
                 </div>
             </div>

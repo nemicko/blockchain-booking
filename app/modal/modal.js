@@ -18,6 +18,7 @@ angular.module('tbbc.modal', ['ngRoute', 'ui.router'])
 
             var id = $stateParams.id;
             console.log("ID", id);
+            $scope.flag=1;
 
             $scope.publicKey = localStorage.getItem("publicKey");
             $scope.publicKey = JSON.parse($scope.publicKey);
@@ -64,6 +65,9 @@ angular.module('tbbc.modal', ['ngRoute', 'ui.router'])
 
                 $interval(function () {
                     $scope.state++;
+                    /*if ($scope.state==3) {
+                        $scope.flag = 1;
+                    }*/
                     console.log($scope.state);
                 }, 3000, 3);
 

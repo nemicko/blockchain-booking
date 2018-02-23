@@ -27,7 +27,7 @@
 
 .cardRight {
     width: 6.5em;
-    border-left: .18em dashed #777777;
+    border-left: .18em dashed #ffffff;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
 }
@@ -37,7 +37,7 @@
     display: block;
     width: .9em;
     height: .9em;
-    background: #777777;
+    background: #ffffff;
     border-radius: 50%;
     left: -.5em;
 }

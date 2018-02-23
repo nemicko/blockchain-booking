@@ -11,20 +11,37 @@ angular.module('tbbc.bookings', ['ngRoute', 'ui.router'])
 
     }])
 
-    .controller('BookingsCtrl', ['$scope', '$http', '$stateParams', '$state', function($scope, $http, $stateParams, $state) {
+    .controller('BookingsCtrl', ['$scope', '$http', '$stateParams', '$state', '$rootScope',
+        function($scope, $http, $stateParams, $state, $rootScope) {
 
-
-        $scope.bookings = JSON.parse(localStorage.getItem("bookings"));
-
+        $scope.pending = JSON.parse(localStorage.getItem("bookings"));
         $scope.topics = [];
+        $scope.publicKey = JSON.parse(localStorage.getItem("publicKey"));
+        $scope.bookings = [];
+
 
         $http.get('course.json').then(function(response){
             $scope.topics = response.data.topics;
 
-            $scope.bookings.forEach(function(booking) {
+            $scope.pending.forEach(function(booking) {
                 var course = $scope.findCourse(booking.course);
                 booking.course = course;
+                booking.pending = true;
             });
+
+            $scope.bookings = $scope.pending;
+
+            $rootScope.chain.forEach(function(block){
+                block.transactions.forEach(function(transaction){
+                    if (transaction.to == $scope.publicKey){
+                        var course = $scope.findCourse(transaction.course);
+                        transaction.course = course;
+                        transaction.pending = false;
+                        $scope.bookings.push(transaction);
+                    }
+                });
+            });
+
         });
 
         $scope.findCourse = function(courseId){

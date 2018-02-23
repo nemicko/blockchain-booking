@@ -11,6 +11,13 @@
     position: relative;
     padding: 1em;
 }
+.card-green{
+    background: linear-gradient(to bottom, #25e844 0%, #00e862 26%, #ecedef 26%, #ecedef 100%);
+    height: 11em;
+    float: left;
+    position: relative;
+    padding: 1em;
+}
 
 .cardLeft {
     border-top-left-radius: 8px;

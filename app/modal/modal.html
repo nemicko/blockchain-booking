@@ -9,7 +9,7 @@
                 <hr>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <p>Name: {{user.name}}</p>
+                <p>Name: {{username}}</p>
                 <hr>
             </div>
 
@@ -28,7 +28,7 @@
                     <div ng-if="showText">
                         <p ng-class="{'green': state>=1}" >Searching Nodes</p>
                         <p ng-class="{'green': state>=2}">Submitting transaction</p>
-                        <p ng-class="{'green': state==3}">Transaction Accepted</p>
+                        <p ng-class="{'green': state>=3}">Transaction Accepted</p>
                     </div>
                 </div>
             </div>

@@ -13,7 +13,7 @@ config(['$locationProvider', '$routeProvider','$urlRouterProvider', function($lo
     $locationProvider.hashPrefix('!');
 
 
-    if(localStorage.getItem("user")===null) {
+    if(localStorage.getItem("username")===null) {
         $urlRouterProvider
             .otherwise('/login');
     }
@@ -29,7 +29,7 @@ config(['$locationProvider', '$routeProvider','$urlRouterProvider', function($lo
 .run(['$rootScope', '$http', '$stateParams', '$state','$location',
         function($rootScope, $http, $stateParams, $state, $location) {
 
-    if(localStorage.getItem("user")===null) {
+    if(localStorage.getItem("username")===null) {
         $location.path('/login');
     }
 
@@ -41,8 +41,60 @@ config(['$locationProvider', '$routeProvider','$urlRouterProvider', function($lo
             $state.go('menu');
         };
 
-        // socket.emit("register", { data: true });
-        console.log("connected");
+        if (socket) {
+            socket.emit("register", {data: true})
+            socket.emit("get", function (data) {
+                console.log("New chain received", chain);
+
+                var pendings = JSON.parse(localStorage.getItem("bookings"));
+                pendings = (pendings) ? pendings : [];
+                var publicKey = JSON.parse(localStorage.getItem("publicKey"));
+
+                $rootScope.chain = chain;
+
+                $rootScope.chain.forEach(function (block) {
+                    block.transactions.forEach(function (transaction) {
+                        if (transaction.to == publicKey) {
+                            pendings.forEach(function (pending) {
+                                if (pending.course == transaction.course) {
+                                    var index = pendings.indexOf(pending);
+                                    pendings.splice(index, 1);
+                                }
+                            });
+                        }
+                    });
+                });
+
+                localStorage.setItem("bookings", JSON.stringify(pendings));
+            });
+            console.log("connected");
+
+
+            socket.on("chain", function (chain) {
+                console.log("New chain received", chain);
+
+                var pendings = JSON.parse(localStorage.getItem("bookings"));
+                pendings = (pendings) ? pendings : [];
+                var publicKey = JSON.parse(localStorage.getItem("publicKey"));
+
+                $rootScope.chain = chain;
+
+                $rootScope.chain.forEach(function (block) {
+                    block.transactions.forEach(function (transaction) {
+                        if (transaction.to == publicKey) {
+                            pendings.forEach(function (pending) {
+                                if (pending.course == transaction.course) {
+                                    var index = pendings.indexOf(pending);
+                                    pendings.splice(index, 1);
+                                }
+                            });
+                        }
+                    });
+                });
+
+                localStorage.setItem("bookings", JSON.stringify(pendings));
+            });
+        }
 
 }])
 .directive('carousel', function() {
